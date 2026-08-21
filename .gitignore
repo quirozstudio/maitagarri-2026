@@ -1,0 +1,13 @@
+# Material original y archivos de producción local
+assets/originals/
+assets/working/
+audit/
+img/
+tools/
+
+# Sistema y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
