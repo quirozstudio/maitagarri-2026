@@ -34,3 +34,4 @@ if(!reduced){
     new ResizeObserver(resize).observe(hero);resize();observer.observe(hero);raf=requestAnimationFrame(draw);
   }
 }
+document.querySelectorAll('.review-slot blockquote').forEach((quote,index)=>{const id=`review-${index+1}`;quote.id=id;quote.classList.add('review-collapsed');const button=document.createElement('button');button.type='button';button.className='review-toggle';button.setAttribute('aria-controls',id);button.setAttribute('aria-expanded','false');button.textContent='Leer más';quote.after(button);button.addEventListener('click',()=>{const expanded=button.getAttribute('aria-expanded')==='true';button.setAttribute('aria-expanded',String(!expanded));button.textContent=expanded?'Leer más':'Leer menos';quote.classList.toggle('review-collapsed',expanded)})});
