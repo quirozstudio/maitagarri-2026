@@ -13,6 +13,33 @@ function addPhotoCredit(host){if(!host||host.querySelector(':scope > .photo-cred
 function decoratePhotos(root=document){root.querySelectorAll?.('img[src^="assets/web/"]').forEach(image=>addPhotoCredit(image.closest('figure,.hero-scene,.sidreria-hero,.location-photo')||image.parentElement));root.querySelectorAll?.('[data-photo-credit]').forEach(addPhotoCredit)}
 decoratePhotos();
 new MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(node=>{if(node.nodeType===1)decoratePhotos(node)}))).observe(document.querySelector('#menu-content')||document.body,{childList:true,subtree:true});
+
+const reservationForm=document.querySelector('.reservation-form');
+const reservationDate=document.querySelector('#reservation-date');
+if(reservationDate){const today=new Date();today.setMinutes(today.getMinutes()-today.getTimezoneOffset());reservationDate.min=today.toISOString().split('T')[0]}
+reservationForm?.addEventListener('submit',async event=>{
+  event.preventDefault();
+  const submit=reservationForm.querySelector('button[type="submit"]');
+  const status=reservationForm.querySelector('.form-status');
+  if(!reservationForm.reportValidity())return;
+  submit.disabled=true;
+  submit.textContent='Enviando…';
+  status.className='form-status';
+  status.textContent='Estamos enviando tu solicitud.';
+  try{
+    const response=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(reservationForm)).toString()});
+    if(!response.ok)throw new Error('No se pudo enviar');
+    reservationForm.reset();
+    status.className='form-status is-success';
+    status.textContent='Solicitud enviada. Maitagarri contactará contigo para confirmar la mesa.';
+  }catch(error){
+    status.className='form-status is-error';
+    status.textContent='No hemos podido enviarla. Llámanos al 948 722 303 o reserva por WhatsApp.';
+  }finally{
+    submit.disabled=false;
+    submit.textContent='Solicitar reserva';
+  }
+});
 document.querySelectorAll('.experience').forEach(panel=>{['mouseenter','focusin','click'].forEach(type=>panel.addEventListener(type,()=>{document.querySelectorAll('.experience').forEach(p=>p.classList.remove('active'));panel.classList.add('active')}))});
 if(!reduced && matchMedia('(pointer:fine)').matches){const hero=document.querySelector('.hero'),scene=document.querySelector('.hero-scene'),atmo=document.querySelector('.hero-atmosphere');hero?.addEventListener('pointermove',e=>{const x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);scene.style.transform=`scale(1.035) translate(${x*-.35}%,${y*-.25}%)`;atmo.style.transform=`translate(${x*.6}%,${y*.6}%)`})}
 if(!reduced){addEventListener('scroll',()=>{const hero=document.querySelector('.hero'),scene=document.querySelector('.hero-scene');if(scrollY<innerHeight*1.2){const p=Math.min(1,scrollY/innerHeight);scene.style.scale=String(1+p*.045);hero.style.setProperty('--scroll',p)}},{passive:true})}
