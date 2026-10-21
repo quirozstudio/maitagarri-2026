@@ -226,6 +226,20 @@
 @keyframes flameTongue{to{transform:translate3d(14%,-12%,0) scale(.75,1.2);opacity:.94}}
 @media(max-width:600px){.intro-grill-photo{inset:35% -18% 0;background-position:center 56%;filter:saturate(1.08) contrast(1.08) brightness(.56)}.intro-smoke{top:18%;height:64vh}.intro-fire{left:-26%;right:-26%;height:39%;bottom:-8%}.intro-brand{transform:translateY(-7vh)}}
 
+/* Intro v6: fuera las llamas gráficas; la sensación de fuego la dan la
+   fotografía, el calor y chispas con recorrido curvo y estela luminosa. */
+.intro-grill-photo{filter:saturate(1.08) contrast(1.1) brightness(.72);opacity:.96}
+.intro-fire{display:none}
+.intro-sparks{position:absolute;z-index:5;inset:0 0 6%;display:block;overflow:hidden;pointer-events:none}
+.intro-sparks i{position:absolute;left:var(--x);bottom:20%;width:max(2px,calc(var(--size)*.9));height:max(2px,calc(var(--size)*.9));border-radius:50%;background:#fff4c1;box-shadow:0 0 5px 1px #ffc35a,0 0 18px 5px rgba(238,67,19,.72);opacity:0;mix-blend-mode:screen;will-change:transform,opacity;animation:sparkArcA var(--speed,1.7s) var(--delay) cubic-bezier(.2,.65,.25,1) forwards}
+.intro-sparks i:before{content:"";position:absolute;left:50%;top:68%;width:max(1.5px,calc(var(--size)*.55));height:clamp(24px,4.2vw,52px);border-radius:50%;background:linear-gradient(180deg,rgba(255,249,204,.98),rgba(255,151,49,.55) 35%,rgba(239,82,20,.16) 72%,transparent);box-shadow:0 0 10px rgba(255,155,48,.48);filter:blur(.45px);transform:translateX(-50%) rotate(-12deg);transform-origin:top center;opacity:.95;animation:sparkTrail var(--speed,1.7s) var(--delay) ease-out forwards}
+.intro-sparks i:nth-child(4n+2){animation-name:sparkArcB}.intro-sparks i:nth-child(4n+3){animation-name:sparkArcC}.intro-sparks i:nth-child(4n+4){animation-name:sparkArcD}
+@keyframes sparkArcA{0%{opacity:0;transform:translate3d(0,20px,0) scale(.35)}14%{opacity:1}42%{transform:translate3d(22px,-82px,0) scale(1)}67%{transform:translate3d(-2px,-152px,0) scale(.78)}100%{opacity:0;transform:translate3d(45px,-268px,0) scale(.08)}}
+@keyframes sparkArcB{0%{opacity:0;transform:translate3d(0,18px,0) scale(.4)}13%{opacity:1}36%{transform:translate3d(-28px,-70px,0) scale(1)}62%{transform:translate3d(-52px,-139px,0) scale(.72)}100%{opacity:0;transform:translate3d(-18px,-238px,0) scale(.08)}}
+@keyframes sparkArcC{0%{opacity:0;transform:translate3d(0,18px,0) scale(.3)}18%{opacity:1}46%{transform:translate3d(15px,-95px,0) scale(1.08)}73%{transform:translate3d(57px,-174px,0) scale(.65)}100%{opacity:0;transform:translate3d(31px,-292px,0) scale(.06)}}
+@keyframes sparkArcD{0%{opacity:0;transform:translate3d(0,22px,0) scale(.35)}16%{opacity:1}45%{transform:translate3d(-12px,-88px,0) scale(.96)}70%{transform:translate3d(-43px,-158px,0) scale(.7)}100%{opacity:0;transform:translate3d(-68px,-276px,0) scale(.05)}}
+@keyframes sparkTrail{0%,12%{opacity:0;transform:translateX(-50%) rotate(-12deg) scaleY(.2)}30%{opacity:.85}100%{opacity:0;transform:translateX(-50%) rotate(-12deg) scaleY(1)}}
+
 /* La llama necesita irregularidad y un núcleo visible, sin siluetas geométricas. */
 .intro-fire i{width:10%;height:63%;border-radius:54% 46% 48% 52%/78% 72% 28% 22%;background:radial-gradient(ellipse at 50% 100%,#fffbe2 0 4%,#ffe38a 11%,#ff9a27 28%,#ed3e0d 51%,rgba(87,7,2,.68) 66%,transparent 77%);filter:blur(.35px) saturate(1.18);mix-blend-mode:screen}
 .intro-fire i:before{left:30%;bottom:0;width:40%;height:60%;border-radius:62% 38% 50% 50%/78% 70% 30% 22%;background:radial-gradient(ellipse at 50% 100%,#fffef2 0 8%,#ffe79c 24%,#ffb53e 52%,rgba(246,82,13,.35) 74%,transparent 80%);filter:blur(.25px);opacity:.96}
