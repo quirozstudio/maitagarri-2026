@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
 
+Sitemap: https://melodic-croquembouche-19fdee.netlify.app/sitemap.xml
+

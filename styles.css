@@ -189,6 +189,10 @@
 @media(max-width:900px){.hub-grid{grid-template-columns:1fr}.hub-card{min-height:240px}.careers-layout{grid-template-columns:1fr}.careers-copy{position:static;max-width:680px}.careers-form{grid-template-columns:1fr}.careers-form .form-field-wide{grid-column:1}.page-hero{min-height:58vh}}
 @media(max-width:600px){.page-hero{padding-top:9rem}.page-hero h1{font-size:clamp(3.4rem,17vw,5rem)}.hub-foot{flex-direction:column;align-items:flex-start}.careers-form{padding:1.25rem}.careers-section{padding-inline:1rem}}
 
+/* SEO local: texto útil y visible en el primer bloque sin romper la composición. */
+.hero-description{max-width:390px;margin:-.85rem 0 1.5rem;color:#d2c4b5;font:1.02rem/1.45 Georgia,serif}
+@media(max-width:760px){.hero-description{max-width:320px;font-size:.92rem;margin:-.55rem 0 1.1rem}}
+
 /* Intro v5: una escena de parrilla real como base, con fuego y humo en capas.
    La fotografía aporta textura y profundidad; el CSS solo anima la brasa para
    evitar el aspecto de ilustración plana y mantener el peso de la página bajo. */
