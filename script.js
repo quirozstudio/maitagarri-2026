@@ -1,7 +1,7 @@
 const navigationEntry=performance.getEntriesByType('navigation')[0];
 const isReload=navigationEntry?.type==='reload';
 if('scrollRestoration' in history)history.scrollRestoration='manual';
-if(isReload){if(location.hash)history.replaceState(null,'',location.pathname+location.search);addEventListener('pageshow',()=>setTimeout(()=>scrollTo({top:0,left:0,behavior:'instant'}),0),{once:true});setTimeout(()=>scrollTo({top:0,left:0,behavior:'instant'}),0)}
+if(isReload){if(location.hash)history.replaceState(null,'',location.pathname+location.search);addEventListener('pageshow',()=>setTimeout(()=>scrollTo(0,0),0),{once:true});setTimeout(()=>scrollTo(0,0),0)}
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const intro = document.querySelector('.intro');
 const body = document.body;
