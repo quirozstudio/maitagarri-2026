@@ -8,11 +8,8 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')finishIntro()});
 if(!reduced){const field=document.querySelector('.intro-sparks');for(let i=0;i<52;i++){const spark=document.createElement('i');spark.style.setProperty('--x',`${7+Math.random()*86}%`);spark.style.setProperty('--delay',`${.08+Math.random()*2.7}s`);spark.style.setProperty('--drift',`${-85+Math.random()*170}px`);spark.style.setProperty('--size',`${1+Math.random()*3.2}px`);spark.style.setProperty('--speed',`${1+Math.random()*.9}s`);field?.appendChild(spark)}}
 const header=document.querySelector('.site-header');addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>40),{passive:true});
 const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('#nav');toggle?.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!open));nav.classList.toggle('open',!open)});nav?.addEventListener('click',()=>{toggle?.setAttribute('aria-expanded','false');nav.classList.remove('open')});
-const photographerUrl='https://www.instagram.com/bertacarrilloo/';
-function addPhotoCredit(host){if(!host||host.querySelector(':scope > .photo-credit'))return;host.classList.add('photo-credit-host');const credit=document.createElement('a');credit.className='photo-credit';credit.href=photographerUrl;credit.target='_blank';credit.rel='noopener noreferrer';credit.setAttribute('aria-label','Fotografía de Berta Carrillo, abrir su Instagram');credit.innerHTML='<span>Foto</span> Berta Carrillo <i aria-hidden="true">↗</i>';host.appendChild(credit)}
-function decoratePhotos(root=document){root.querySelectorAll?.('img[src^="assets/web/"]').forEach(image=>addPhotoCredit(image.closest('figure,.hero-scene,.sidreria-hero,.location-photo')||image.parentElement));root.querySelectorAll?.('[data-photo-credit]').forEach(addPhotoCredit)}
-decoratePhotos();
-new MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(node=>{if(node.nodeType===1)decoratePhotos(node)}))).observe(document.querySelector('#menu-content')||document.body,{childList:true,subtree:true});
+// Las fotografías se muestran limpias para que el producto sea el protagonista.
+function decoratePhotos(){}
 
 const reservationForm=document.querySelector('.reservation-form');
 const reservationDate=document.querySelector('#reservation-date');
