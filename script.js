@@ -2,7 +2,7 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const intro = document.querySelector('.intro');
 const body = document.body;
 function finishIntro(){intro?.classList.add('done');body.classList.remove('intro-active')}
-if(!reduced){body.classList.add('intro-active');setTimeout(finishIntro,4400)}else{intro?.classList.add('done')}
+if(!reduced&&intro){body.classList.add('intro-active');setTimeout(finishIntro,4400)}else if(intro){intro.classList.add('done')}
 document.querySelector('.intro-skip')?.addEventListener('click',finishIntro);
 document.addEventListener('keydown',e=>{if(e.key==='Escape')finishIntro()});
 if(!reduced){const field=document.querySelector('.intro-sparks');for(let i=0;i<52;i++){const spark=document.createElement('i');spark.style.setProperty('--x',`${7+Math.random()*86}%`);spark.style.setProperty('--delay',`${.08+Math.random()*2.7}s`);spark.style.setProperty('--drift',`${-85+Math.random()*170}px`);spark.style.setProperty('--size',`${1+Math.random()*3.2}px`);spark.style.setProperty('--speed',`${1+Math.random()*.9}s`);field?.appendChild(spark)}}
@@ -14,29 +14,33 @@ function decoratePhotos(){}
 const reservationForm=document.querySelector('.reservation-form');
 const reservationDate=document.querySelector('#reservation-date');
 if(reservationDate){const today=new Date();today.setMinutes(today.getMinutes()-today.getTimezoneOffset());reservationDate.min=today.toISOString().split('T')[0]}
-reservationForm?.addEventListener('submit',async event=>{
+const bindNetlifyForm=(form,{multipart=false,successMessage,submitLabel}={})=>form?.addEventListener('submit',async event=>{
   event.preventDefault();
-  const submit=reservationForm.querySelector('button[type="submit"]');
-  const status=reservationForm.querySelector('.form-status');
-  if(!reservationForm.reportValidity())return;
+  const submit=form.querySelector('button[type="submit"]');
+  const status=form.querySelector('.form-status');
+  if(!form.reportValidity())return;
   submit.disabled=true;
   submit.textContent='Enviando…';
   status.className='form-status';
   status.textContent='Estamos enviando tu solicitud.';
   try{
-    const response=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(reservationForm)).toString()});
+    const options={method:'POST'};
+    if(multipart){options.body=new FormData(form)}else{options.headers={'Content-Type':'application/x-www-form-urlencoded'};options.body=new URLSearchParams(new FormData(form)).toString()}
+    const response=await fetch(form.getAttribute('action')||'/',options);
     if(!response.ok)throw new Error('No se pudo enviar');
-    reservationForm.reset();
+    form.reset();
     status.className='form-status is-success';
-    status.textContent='Solicitud enviada. Maitagarri contactará contigo para confirmar la mesa.';
+    status.textContent=successMessage||'Solicitud enviada correctamente.';
   }catch(error){
     status.className='form-status is-error';
-    status.textContent='No hemos podido enviarla. Llámanos al 948 722 303 o reserva por WhatsApp.';
+    status.textContent='No hemos podido enviarla. Llámanos al 948 722 303 o escríbenos por WhatsApp.';
   }finally{
     submit.disabled=false;
-    submit.textContent='Solicitar reserva';
+    submit.textContent=submitLabel||'Enviar';
   }
 });
+bindNetlifyForm(reservationForm,{successMessage:'Solicitud enviada. Maitagarri contactará contigo para confirmar la mesa.',submitLabel:'Solicitar reserva'});
+bindNetlifyForm(document.querySelector('.careers-form'),{multipart:true,successMessage:'Candidatura enviada. Guardaremos tu CV y te contactaremos si encaja con una vacante.',submitLabel:'Enviar candidatura'});
 document.querySelectorAll('.experience').forEach(panel=>{['mouseenter','focusin','click'].forEach(type=>panel.addEventListener(type,()=>{document.querySelectorAll('.experience').forEach(p=>p.classList.remove('active'));panel.classList.add('active')}))});
 if(!reduced && matchMedia('(pointer:fine)').matches){const hero=document.querySelector('.hero'),scene=document.querySelector('.hero-scene'),atmo=document.querySelector('.hero-atmosphere');hero?.addEventListener('pointermove',e=>{const x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);scene.style.transform=`scale(1.035) translate(${x*-.35}%,${y*-.25}%)`;atmo.style.transform=`translate(${x*.6}%,${y*.6}%)`})}
 if(!reduced){addEventListener('scroll',()=>{const hero=document.querySelector('.hero'),scene=document.querySelector('.hero-scene');if(scrollY<innerHeight*1.2){const p=Math.min(1,scrollY/innerHeight);scene.style.scale=String(1+p*.045);hero.style.setProperty('--scroll',p)}},{passive:true})}
