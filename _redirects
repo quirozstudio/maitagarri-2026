@@ -1,0 +1,19 @@
+# Equivalencias de la antigua instalación WordPress/Elementor.
+# Las rutas en inglés y francés sin destino localizado equivalente quedan pendientes.
+# Netlify normaliza la barra final, por lo que cada ruta solo necesita una regla.
+
+/es/inicio / 301
+
+/fr/menu-sidreria /carta.html#menu 301
+/fr/menus-especiales /celebraciones.html 301
+/fr/reservations /#reserva 301
+
+/contacto /#contacto 301
+/es/contacto /#contacto 301
+
+/en/san-fermin /#san-fermin-2027 301
+/san-fermin-2 /#san-fermin-2027 301
+
+# Rutas WordPress adicionales detectadas durante la auditoría pública.
+/eventos /cenas-de-empresa.html 301
+/elementor-pagina-40 /celebraciones.html 301
