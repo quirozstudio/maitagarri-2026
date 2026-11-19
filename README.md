@@ -6,5 +6,5 @@ Experiencia visual, carta, menú sidrería, pinchos y bodega en una web estátic
 
 ## Vista previa
 
-https://padrearatosblog.github.io/maitagarri-2026/
+https://quirozstudio.github.io/maitagarri-2026/
 
