@@ -5,8 +5,9 @@ if(isReload){if(location.hash)history.replaceState(null,'',location.pathname+loc
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const intro = document.querySelector('.intro');
 const body = document.body;
-function finishIntro(){intro?.classList.add('done');body.classList.remove('intro-active')}
-if(!reduced&&intro){body.classList.add('intro-active');setTimeout(finishIntro,4400)}else if(intro){intro.classList.add('done')}
+const introSeen=(()=>{try{return sessionStorage.getItem('maitagarri-intro-seen')==='1'}catch{return false}})();
+function finishIntro(){intro?.classList.add('done');body.classList.remove('intro-active');try{sessionStorage.setItem('maitagarri-intro-seen','1')}catch{}}
+if(!reduced&&intro&&!introSeen){body.classList.add('intro-active');setTimeout(finishIntro,2600)}else if(intro){finishIntro()}
 document.querySelector('.intro-skip')?.addEventListener('click',finishIntro);
 document.addEventListener('keydown',e=>{if(e.key==='Escape')finishIntro()});
 if(!reduced){const field=document.querySelector('.intro-sparks');for(let i=0;i<42;i++){const spark=document.createElement('i');spark.style.setProperty('--x',`${10+Math.random()*80}%`);spark.style.setProperty('--delay',`${.03+Math.random()*1.8}s`);spark.style.setProperty('--drift',`${-70+Math.random()*140}px`);spark.style.setProperty('--size',`${2.4+Math.random()*3.4}px`);spark.style.setProperty('--speed',`${1.8+Math.random()*1.2}s`);field?.appendChild(spark)}}
@@ -45,6 +46,8 @@ const bindNetlifyForm=(form,{multipart=false,successMessage,submitLabel}={})=>fo
 });
 bindNetlifyForm(reservationForm,{successMessage:'Solicitud enviada. Maitagarri contactará contigo para confirmar la mesa.',submitLabel:'Solicitar reserva'});
 bindNetlifyForm(document.querySelector('.careers-form'),{multipart:true,successMessage:'Candidatura enviada. Guardaremos tu CV y te contactaremos si encaja con una vacante.',submitLabel:'Enviar candidatura'});
+const requestedExperience=new URLSearchParams(location.search).get('experiencia');
+if(reservationForm&&requestedExperience==='cena-empresa'){const experience=document.querySelector('#reservation-experience');if(experience)experience.value='Cena de empresa'}
 document.querySelectorAll('.experience').forEach(panel=>{['mouseenter','focusin','click'].forEach(type=>panel.addEventListener(type,()=>{document.querySelectorAll('.experience').forEach(p=>p.classList.remove('active'));panel.classList.add('active')}))});
 document.querySelector('[data-booking-experience]')?.addEventListener('click',()=>{const experience=document.querySelector('#reservation-experience');const value=document.querySelector('[data-booking-experience]')?.dataset.bookingExperience;if(experience&&value)experience.value=value});
 if(!reduced && matchMedia('(pointer:fine)').matches){const hero=document.querySelector('.hero'),scene=document.querySelector('.hero-scene'),atmo=document.querySelector('.hero-atmosphere');hero?.addEventListener('pointermove',e=>{const x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);scene.style.transform=`scale(1.035) translate(${x*-.35}%,${y*-.25}%)`;atmo.style.transform=`translate(${x*.6}%,${y*.6}%)`})}
