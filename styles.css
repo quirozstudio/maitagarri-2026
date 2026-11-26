@@ -167,6 +167,7 @@
 @media(max-width:760px){.house-grid{display:block}.house-grid figure{margin-bottom:1rem}.house-grid img,.house-grid .wide img{height:56vh}}
 .reserve-bg{background-image:linear-gradient(rgba(8,6,4,.48),rgba(8,6,4,.9)),url('assets/web/maitagarri-coffee.webp')}
 
+
 /* Campaña de cenas de empresa: la fotografía del local vende la experiencia antes que el texto. */
 .campaign-hero-photo{position:relative;isolation:isolate;overflow:hidden;background:#15110e;min-height:78vh}
 .campaign-hero-photo-media{position:absolute;inset:0;z-index:0;overflow:hidden}
@@ -234,7 +235,7 @@
 @media(max-width:600px){.sanfermin-booking{padding-top:5rem;padding-bottom:5rem}.sanfermin-booking-details{grid-template-columns:1fr}.sanfermin-booking-details>div{min-height:auto}.sanfermin-booking-details span{margin-bottom:2rem}}
 
 /* Acciones persistentes: llamada y reserva siempre al alcance. */
-.quick-actions{position:fixed;right:1.25rem;bottom:1.25rem;z-index:90;display:flex;gap:.55rem;filter:drop-shadow(0 12px 24px rgba(0,0,0,.28));transition:opacity .28s ease,visibility .28s ease,transform .28s ease}.quick-actions.footer-near{opacity:0;visibility:hidden;pointer-events:none;transform:translateY(140%)}.quick-action{display:inline-flex;align-items:center;justify-content:center;min-width:7.1rem;padding:.85rem 1.05rem;border:1px solid rgba(238,231,220,.42);background:rgba(13,10,7,.84);backdrop-filter:blur(14px);color:var(--paper);font-size:.64rem;letter-spacing:.14em;text-decoration:none;text-transform:uppercase;transition:transform .22s ease,background .22s ease,border-color .22s ease}.quick-action:hover,.quick-action:focus-visible{transform:translateY(-3px);border-color:var(--gold)}.quick-reserve{border-color:var(--paper);background:var(--paper);color:var(--ink)}.quick-reserve:hover,.quick-reserve:focus-visible{background:var(--gold);border-color:var(--gold)}
+.quick-actions{position:fixed;right:1.25rem;bottom:1.25rem;z-index:90;display:flex;gap:.55rem;filter:drop-shadow(0 12px 24px rgba(0,0,0,.28));transition:opacity .28s ease,visibility .28s ease,transform .28s ease}.quick-actions.footer-near,.quick-actions.reserve-near{opacity:0;visibility:hidden;pointer-events:none;transform:translateY(140%)}.quick-action{display:inline-flex;align-items:center;justify-content:center;min-width:7.1rem;padding:.85rem 1.05rem;border:1px solid rgba(238,231,220,.42);background:rgba(13,10,7,.84);backdrop-filter:blur(14px);color:var(--paper);font-size:.64rem;letter-spacing:.14em;text-decoration:none;text-transform:uppercase;transition:transform .22s ease,background .22s ease,border-color .22s ease}.quick-action:hover,.quick-action:focus-visible{transform:translateY(-3px);border-color:var(--gold)}.quick-reserve{border-color:var(--paper);background:var(--paper);color:var(--ink)}.quick-reserve:hover,.quick-reserve:focus-visible{background:var(--gold);border-color:var(--gold)}
 @media(max-width:600px){.quick-actions{left:1rem;right:1rem;bottom:calc(.75rem + env(safe-area-inset-bottom));gap:.5rem}.quick-action{flex:1;min-width:0;padding:.85rem .7rem;font-size:.6rem}}
 
 /* Arquitectura ligera: la portada orienta y cada detalle vive en su propia página. */
@@ -280,6 +281,23 @@
 @keyframes flameTongue{to{transform:translate3d(14%,-12%,0) scale(.75,1.2);opacity:.94}}
 @media(max-width:600px){.intro-grill-photo{inset:35% -18% 0;background-position:center 56%;filter:saturate(1.08) contrast(1.08) brightness(.56)}.intro-smoke{top:18%;height:64vh}.intro-fire{left:-26%;right:-26%;height:39%;bottom:-8%}.intro-brand{transform:translateY(-7vh)}}
 
+/* Arquitectura 2026: portada breve, esencia editorial y contacto agrupado. */
+.home-essence{padding-bottom:clamp(5rem,9vw,8rem)}
+.home-essence-links{display:flex;flex-wrap:wrap;gap:1rem 1.4rem;margin-top:2rem}
+.text-link{display:inline-flex;color:var(--paper);font-size:.68rem;letter-spacing:.12em;text-decoration:none;text-transform:uppercase;border-bottom:1px solid rgba(238,231,220,.35);padding-bottom:.45rem}
+.text-link:hover,.text-link:focus-visible{color:var(--gold);border-color:var(--gold)}
+.home-contact{background:#e7ded1;color:var(--ink)}
+.home-contact .location{background:transparent}
+.seasonal-callout{display:flex;align-items:center;justify-content:space-between;gap:2rem;background:#15110e;color:var(--paper);padding-top:clamp(3.5rem,7vw,6rem);padding-bottom:clamp(3.5rem,7vw,6rem)}
+.seasonal-callout h2{font-size:clamp(2.8rem,5.5vw,5.8rem);line-height:.9;margin:.6rem 0 1rem}.seasonal-callout h2 em{color:var(--gold)}.seasonal-callout p:not(.kicker){max-width:560px;color:#b7aca0;font:1.05rem/1.6 Georgia;margin:0}
+.home-contact .reserve{margin:0;background:#15110e}
+.house-gallery{background:#15110e;color:var(--paper)}
+
+/* Intro breve: la identidad entra completa dentro de la ventana de 1,5 s. */
+.intro{transition:opacity .35s ease,visibility .35s}.intro-grill-photo{animation-duration:.9s}.intro-heat{animation-duration:1.2s}.intro-smoke{animation-duration:1.35s}.intro-letter-glow{animation-duration:1.2s}.intro-independent-word span:nth-child(1){animation-delay:.72s}.intro-independent-word span:nth-child(2){animation-delay:.76s}.intro-independent-word span:nth-child(3){animation-delay:.8s}.intro-independent-word span:nth-child(4){animation-delay:.84s}.intro-independent-word span:nth-child(5){animation-delay:.88s}.intro-independent-word span:nth-child(6){animation-delay:.92s}.intro-independent-word span:nth-child(7){animation-delay:.96s}.intro-independent-word span:nth-child(8){animation-delay:1s}.intro-independent-word span:nth-child(9){animation-delay:1.04s}.intro-independent-word span:nth-child(10){animation-delay:1.08s}.intro-asador-lockup{animation-delay:.62s}.intro-asador-lockup:before{animation-delay:.58s}.intro-asador-lockup strong:after{animation-delay:.88s}.intro-asador-lockup span{animation-delay:1.04s}
+
+@media(max-width:760px){.seasonal-callout{align-items:flex-start;flex-direction:column}.home-essence-links{align-items:flex-start;flex-direction:column}.home-contact .location{padding-bottom:clamp(4rem,8vw,6rem)}}
+
 /* Intro v6: fuera las llamas gráficas; la sensación de fuego la dan la
    fotografía, el calor y chispas con recorrido curvo y estela luminosa. */
 .intro-grill-photo{filter:saturate(1.08) contrast(1.1) brightness(.72);opacity:.96}
@@ -302,3 +320,23 @@
 .intro-fire{height:38%;bottom:-8%;opacity:.9}
 .intro-fire i{filter:blur(.55px) saturate(1.14);opacity:.82}
 .intro-fire i:nth-child(1){left:9%;height:42%;width:7%}.intro-fire i:nth-child(2){left:28%;height:56%;width:8%}.intro-fire i:nth-child(3){left:47%;height:67%;width:9%}.intro-fire i:nth-child(4){left:68%;height:54%;width:8%}.intro-fire i:nth-child(5){left:86%;height:40%;width:7%}
+
+/* Última capa editorial: se aplica después de los estilos de campaña. */
+:root{--display:"Baskerville","Palatino Linotype","Book Antiqua",Georgia,"Times New Roman",serif;--body:"Helvetica Neue",Arial,Helvetica,sans-serif}
+body{font-family:var(--body)}
+h1,h2,h3,.menu-item h4,.sidreria-hero h3,.sidreria-grid h3,.menu-group>h3{font-family:var(--display)}
+main p:not(.kicker),main summary,main label,main input,main select,main textarea,main button{font-family:var(--body)!important}
+.eyebrow,.kicker{color:var(--muted);font-weight:600;letter-spacing:.18em}
+h1 em,h2 em,.section-heading h2 span,.film-copy h2 span,.campaign-points .section-heading h2 span{color:inherit!important;font-style:italic}
+.experience-hub .kicker,.home-contact .kicker,.page-cta .kicker,.careers-section .kicker,.campaign-intro .kicker,.campaign-faq .kicker,.local-seo .kicker{color:#795b47}
+.hub-number,.hub-link{color:#795b47}
+.seasonal-callout{background:#d8cbbb;color:var(--ink)}
+.seasonal-callout .kicker{color:#795b47}.seasonal-callout p:not(.kicker){color:#5f554b}.seasonal-callout .button-solid{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.home-contact .reserve{color:var(--paper)}
+.home-contact .reserve-actions .button{color:var(--paper);border-color:rgba(238,231,220,.68)}
+.home-contact .reserve-actions .button:hover,.home-contact .reserve-actions .button:focus-visible{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.home-video{margin-top:0}
+.hero-copy{text-shadow:0 3px 22px rgba(0,0,0,.62)}
+.hero-copy h1{max-width:920px}
+.hero-scene:after{background:linear-gradient(180deg,rgba(3,2,1,.62) 0,rgba(3,2,1,.18) 32%,rgba(3,2,1,.66) 100%),radial-gradient(circle at 50% 55%,transparent 30%,rgba(2,1,1,.34) 100%)}
+@media(min-width:761px){.hero-copy h1 br{display:block}}
